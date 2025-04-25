@@ -1,4 +1,5 @@
 name: Deploy to staging
+
 on:
   push:
     branches: [ main ]
@@ -8,12 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploying everything to the staging cluster
     steps:
-      - run: |
+      - name: Checkout repo (optional but clean)
+        uses: actions/checkout@v3
+
+      - name: SSH and deploy to staging
+        run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@54.221.115.247 "
+          ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=120 -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@54.221.115.247 "
             cd 100xDevs-devops-week25/ &&
-            git pull origin main && 
+            git pull origin main &&
             export NVM_DIR=\$HOME/.nvm &&
             source \$NVM_DIR/nvm.sh &&
             nvm use 22 &&
