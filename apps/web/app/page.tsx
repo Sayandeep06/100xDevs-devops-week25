@@ -14,7 +14,7 @@ export default async function Home() {
       {user?.password}
       <br />
       <div>
-        hi there
+        Changed with cicd
       </div>
     </div>
   );
