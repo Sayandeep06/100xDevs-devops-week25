@@ -14,7 +14,7 @@ export default async function Home() {
       {user?.password}
       <br />
       <div>
-        Changed with cicd
+        Changed CICD pileline here 
       </div>
     </div>
   );
