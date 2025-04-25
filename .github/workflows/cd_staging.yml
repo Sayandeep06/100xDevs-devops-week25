@@ -12,7 +12,7 @@ jobs:
       - run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@ec2-44-204-189-173.compute-1.amazonaws.com -t "
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@52.204.57.114 -t "
             cd 100xDevs-devops-week25/ &&
             git pull origin main &&
             
