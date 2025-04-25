@@ -12,7 +12,7 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
           ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@54.221.115.247 -t "
-            cd week-25-ci-next-app/ &&
+            cd 100xDevs-devops-week25/ &&
             git pull origin main &&
             pnpm install &&
             pnpm run build &&
