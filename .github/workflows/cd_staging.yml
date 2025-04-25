@@ -13,6 +13,7 @@ jobs:
           chmod 600 ~/ssh_key
           ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@54.221.115.247 "
             cd 100xDevs-devops-week25/ &&
+            git pull origin main && 
             export NVM_DIR=\$HOME/.nvm &&
             source \$NVM_DIR/nvm.sh &&
             nvm use 22 &&
