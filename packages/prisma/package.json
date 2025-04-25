@@ -4,9 +4,6 @@
   "exports":{
     "./client":"./src/index.js"
   },
-  "scripts": {
-    "build": "tsc -b"
-  },
   "main": "index.js",
   "keywords": [],
   "author": "",
