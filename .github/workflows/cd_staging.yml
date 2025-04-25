@@ -14,7 +14,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@54.221.115.247 "
             cd 100xDevs-devops-week25/ &&
             git pull origin main &&
-            curl -fsSL https://get.pnpm.io/install.sh | sh - &&
             export PATH=/root/.nvm/versions/node/v22.13.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && npm install -g pnpm &&
             pnpm install &&
             pnpm run build &&
