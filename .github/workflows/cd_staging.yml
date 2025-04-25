@@ -15,14 +15,24 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@ec2-44-204-189-173.compute-1.amazonaws.com -t "
             cd 100xDevs-devops-week25/ &&
             git pull origin main &&
+            
+            # Ensure NVM is loaded
             export NVM_DIR=\$HOME/.nvm &&
             [ -s \$NVM_DIR/nvm.sh ] && \. \$NVM_DIR/nvm.sh &&
+            
+            # Install Node version 22.13.1 and set it as default
             nvm install 22.13.1 &&
             nvm use 22.13.1 &&
-            npm install -g pnpm &&
+            
+            # Ensure npm and pm2 are available
+            npm install -g pnpm pm2 &&
+            which pm2 && # Verify pm2 path
+            
+            # Install dependencies and build
             pnpm install &&
             pnpm run build &&
-            which pm2 &&  # Check if pm2 is available
+            
+            # Restart services using pm2
             pm2 restart fe-server &&
             pm2 restart http-server &&
             pm2 restart ws-server
