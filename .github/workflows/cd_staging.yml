@@ -11,9 +11,12 @@ jobs:
       - run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@54.221.115.247 -t "
-            cd 100xDevs-devops-week25/ &&
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@54.221.115.247 "
+            export PNPM_HOME=\$HOME/.local/share/pnpm &&
+            export PATH=\$PNPM_HOME:\$PATH &&
+            cd week-25-ci-next-app/ &&
             git pull origin main &&
+            curl -fsSL https://get.pnpm.io/install.sh | sh - &&
             pnpm install &&
             pnpm run build &&
             pm2 restart fe-sever &&
