@@ -12,14 +12,15 @@ jobs:
       - run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@ec2-44-204-189-173.compute-1.amazonaws.com -t "
-            cd 100xDevs-devops-week25/ &&
-            git pull origin main &&
-            export PATH=/root/.nvm/versions/node/v22.13.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin &&
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key root@64.227.147.124 -t "
+            cd week-25-ci-next-app/ &&
+            export NVM_DIR=\$HOME/.nvm &&
+            [ -s \$NVM_DIR/nvm.sh ] && source \$NVM_DIR/nvm.sh &&
+            nvm use 22.13.1 &&
             npm install -g pnpm &&
             pnpm install &&
             pnpm run build &&
-            pm2 restart fe-server &&
-            pm2 restart http-server &&
-            pm2 restart ws-server
+            pm2 restart fe-sever &&
+            pm2 restart http-sever &&
+            pm2 restart ws-sever
           "
