@@ -16,7 +16,7 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
-          ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=120 -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@ec2-44-204-189-173.compute-1.amazonaws.com "
+          ssh -vvv -o ServerAliveInterval=30 -o ServerAliveCountMax=120 -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@ec2-44-204-189-173.compute-1.amazonaws.com "
             cd 100xDevs-devops-week25/ &&
             git pull origin main &&
             export NVM_DIR=\$HOME/.nvm &&
