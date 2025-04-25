@@ -30,7 +30,7 @@ jobs:
             
             # Install dependencies and build
             pnpm install &&
-            pnpm run build -- --no-lint &&
+            pnpm run build &&
             
             # Restart services using pm2
             pm2 restart fe-server &&
